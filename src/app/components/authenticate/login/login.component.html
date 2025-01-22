@@ -1,0 +1,26 @@
+<div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+    <form #form="ngForm" (submit)="onSubmit(form)">
+        <h1>Login</h1>
+        <hr>
+        <br>
+        <div>
+            <label>Username:</label>
+        </div>
+        <div>
+            <input name="username" [(ngModel)]="formModel.username" type="text">
+        </div>
+        <div>
+            <label>Password:</label>
+        </div>
+        <div>
+            <input name="password"  [(ngModel)]="formModel.password"type="password">
+        </div>
+        <div *ngIf="loginFalied" style="color: red">
+            Login Failed!
+        </div>
+        <button type="submit">Login</button>
+    </form>
+</div>
+<div *ngIf="loading">
+    <app-loading-hover [loadingText]="'Logging In...'"></app-loading-hover>
+</div>

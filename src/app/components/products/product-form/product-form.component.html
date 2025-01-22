@@ -1,0 +1,29 @@
+
+<form #f="ngForm" (submit)="onSubmit(f)" >
+    <h2 *ngIf="product.id == 0; else elseBlock">Add Product</h2>
+    <ng-template #elseBlock><h2>Edit Product</h2></ng-template>
+    <hr>
+    <br>
+    <div>
+        <label>Name:</label>
+    </div>
+    <div>
+        <input name="productName" [(ngModel)]="product.name" type="text">
+    </div>
+    <div>
+        <label>Description:</label>
+    </div>
+    <div>
+        <input name="productDescription"  [(ngModel)]="product.description" type="text">
+    </div>
+    <div>
+        <label>Price:</label>
+    </div>
+    <div>
+        <input name="productPrice"  [(ngModel)]="product.price" type="number">
+    </div>
+    <button type="submit">Save</button>
+</form>
+<div *ngIf="loading">
+    <app-loading-hover [loadingText]="'Saving Product...'"></app-loading-hover>
+</div>
