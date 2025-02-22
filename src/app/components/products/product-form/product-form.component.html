@@ -1,6 +1,6 @@
 
-<form #f="ngForm" (submit)="onSubmit(f)" >
-    <h2 *ngIf="product.id == 0; else elseBlock">Add Product</h2>
+<form [formGroup]="productFormGroup" #f="ngForm" (submit)="onSubmit()" >
+    <h2 *ngIf="isEditForm==false; else elseBlock">Add Product</h2>
     <ng-template #elseBlock><h2>Edit Product</h2></ng-template>
     <hr>
     <br>
@@ -8,19 +8,35 @@
         <label>Name:</label>
     </div>
     <div>
-        <input name="productName" [(ngModel)]="product.name" type="text">
+        <input name="productName" [ngClass]="nameIsInvalid ? 'errorField' : ''" formControlName="name" type="text" required>
+        <div *ngIf="nameIsInvalid" style="color: red; font-size: 12px;">
+            <span *ngIf="name.hasError('required')">
+                Name is required!
+            </span>
+            <span *ngIf="name.hasError('maxlength')">
+                Name cannot be exceeded more than 30 characters!
+            </span>
+        </div>
     </div>
     <div>
         <label>Description:</label>
     </div>
     <div>
-        <input name="productDescription"  [(ngModel)]="product.description" type="text">
+        <input name="productDescription"  formControlName="description" type="text">
     </div>
     <div>
         <label>Price:</label>
     </div>
     <div>
-        <input name="productPrice"  [(ngModel)]="product.price" type="number">
+        <input name="productPrice" [ngClass]="priceIsInvalid ? 'errorField' : ''" formControlName="price" type="number">
+        <div *ngIf="priceIsInvalid" style="color: red; font-size: 12px;">
+            <span *ngIf="price.hasError('required')">
+                Price is required!
+            </span>
+            <span *ngIf="price.hasError('min')">
+                Price cannot be 0 or negative values!
+            </span>
+        </div>
     </div>
     <button type="submit">Save</button>
 </form>

@@ -1,3 +1,7 @@
 button{
     width: 100%;
 }
+
+.errorField{
+    border-color: red;
+}

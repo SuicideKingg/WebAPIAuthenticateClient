@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/authenticate/login/login.component';
 import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListOfProductsComponent } from './components/products/list-of-products/list-of-products.component';
 import { ProductFormComponent } from './components/products/product-form/product-form.component';
 import { authInterceptor } from './services/auth/auth.interceptor';
@@ -27,7 +27,8 @@ import { NavigationBarComponent } from './components/shared/navigation-bar/navig
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [provideHttpClient(
     withInterceptors([authInterceptor])
