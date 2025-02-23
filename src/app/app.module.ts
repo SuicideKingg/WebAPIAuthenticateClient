@@ -12,6 +12,12 @@ import { authInterceptor } from './services/auth/auth.interceptor';
 import { LoadingHoverComponent } from './components/shared/loading-hover/loading-hover.component';
 import { ErrorComponent } from './components/shared/error/error/error.component';
 import { NavigationBarComponent } from './components/shared/navigation-bar/navigation-bar/navigation-bar.component';
+import { AuthGard } from './route-guard/auth-gard';
+import { JwtModule } from '@auth0/angular-jwt';
+
+export function tokenGetter(): string { 
+  return localStorage.getItem('accessToken') as string; 
+}
 
 @NgModule({
   declarations: [
@@ -28,11 +34,16 @@ import { NavigationBarComponent } from './components/shared/navigation-bar/navig
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    JwtModule.forRoot({
+      config:{
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:44392"],
+        disallowedRoutes: []
+      }
+    })
   ],
-  providers: [provideHttpClient(
-    withInterceptors([authInterceptor])
-  )],
+  providers: [AuthGard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

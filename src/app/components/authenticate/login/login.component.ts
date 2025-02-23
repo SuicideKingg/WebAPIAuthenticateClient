@@ -28,7 +28,8 @@ export class LoginComponent {
     
     await this.service.login(form.value).then(
       (res:any) =>{
-        localStorage.setItem('token', res.token)
+        localStorage.setItem('accessToken', res.accessToken)
+        localStorage.setItem('refreshToken', res.refreshToken)
         this.router.navigate(['/product-all']);
       }
     ).catch(
