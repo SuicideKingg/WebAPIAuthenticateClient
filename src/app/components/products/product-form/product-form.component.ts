@@ -41,31 +41,22 @@ export class ProductFormComponent implements OnInit{
   }
 
   /**
-   * Form component for Product.Name
+   * Gets the object of Form Control type of the Form Group.
+   * @param controlName Name of the control from the Form Group.
+   * @returns Form control of the Form Group.
    */
-  get name(){
-    return this.productFormGroup.get('name') as FormControl;
+  getFormControl(controlName: string):FormControl{
+    return this.productFormGroup.get(controlName) as FormControl;
   }
 
   /**
-   * Checks if the Name field is invalid.
+   * Checks if the Form Control is valid.
+   * @param controlName Name of the control from the Form Group.
+   * @returns A boolean value if the form control is valid.
    */
-  get nameIsInvalid(): boolean{
-    return (this.name.touched || this.formSubmitted) && this.name.invalid;
-  }
-
-  /**
-   * Form component for Product.Price
-   */
-  get price(){
-    return this.productFormGroup.get('price') as FormControl;
-  }
-
-  /**
-   * Checks if the Price field is invalid.
-   */
-  get priceIsInvalid(): boolean{
-    return (this.price.touched || this.formSubmitted) && this.price.invalid;
+  isControlInvalid(controlName: string):boolean{
+    let ctrlToCheck = this.getFormControl(controlName);
+    return (ctrlToCheck.touched || this.formSubmitted) && ctrlToCheck.invalid;
   }
 
   /**
@@ -74,7 +65,6 @@ export class ProductFormComponent implements OnInit{
    */
   async onSubmit(){
     this.formSubmitted = true;
-    console.log(this.name.hasError('maxLength'));
     if(this.productFormGroup.valid){
       this.product = this.productFormGroup.value;
       console.log(this.product);

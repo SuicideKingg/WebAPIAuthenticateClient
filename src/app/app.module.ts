@@ -14,6 +14,7 @@ import { ErrorComponent } from './components/shared/error/error/error.component'
 import { NavigationBarComponent } from './components/shared/navigation-bar/navigation-bar/navigation-bar.component';
 import { AuthGard } from './route-guard/auth-gard';
 import { JwtModule } from '@auth0/angular-jwt';
+import { RegisterComponent } from './components/authenticate/register/register.component';
 
 export function tokenGetter(): string { 
   return localStorage.getItem('accessToken') as string; 
@@ -27,7 +28,8 @@ export function tokenGetter(): string {
     ProductFormComponent,
     LoadingHoverComponent,
     ErrorComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

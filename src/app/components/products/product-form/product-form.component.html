@@ -8,12 +8,12 @@
         <label>Name:</label>
     </div>
     <div>
-        <input name="productName" [ngClass]="nameIsInvalid ? 'errorField' : ''" formControlName="name" type="text" required>
-        <div *ngIf="nameIsInvalid" style="color: red; font-size: 12px;">
-            <span *ngIf="name.hasError('required')">
+        <input name="productName" [ngClass]="isControlInvalid('name') ? 'errorField' : ''" formControlName="name" type="text" required>
+        <div *ngIf="isControlInvalid('name')" style="color: red; font-size: 12px;">
+            <span *ngIf="getFormControl('name').hasError('required')">
                 Name is required!
             </span>
-            <span *ngIf="name.hasError('maxlength')">
+            <span *ngIf="getFormControl('name').hasError('maxlength')">
                 Name cannot be exceeded more than 30 characters!
             </span>
         </div>
@@ -28,12 +28,12 @@
         <label>Price:</label>
     </div>
     <div>
-        <input name="productPrice" [ngClass]="priceIsInvalid ? 'errorField' : ''" formControlName="price" type="number">
-        <div *ngIf="priceIsInvalid" style="color: red; font-size: 12px;">
-            <span *ngIf="price.hasError('required')">
+        <input name="productPrice" [ngClass]="isControlInvalid('price') ? 'errorField' : ''" formControlName="price" type="number">
+        <div *ngIf="isControlInvalid('price')" style="color: red; font-size: 12px;">
+            <span *ngIf="getFormControl('price').hasError('required')">
                 Price is required!
             </span>
-            <span *ngIf="price.hasError('min')">
+            <span *ngIf="getFormControl('price').hasError('min')">
                 Price cannot be 0 or negative values!
             </span>
         </div>

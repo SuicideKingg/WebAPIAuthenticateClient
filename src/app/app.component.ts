@@ -18,7 +18,7 @@ export class AppComponent {
 
 
   isLoginPage(){
-    return this.router.url === "/";
+    return this.router.url === "/" || this.router.url === "/register";
   }
 
 

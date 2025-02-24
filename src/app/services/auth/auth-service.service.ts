@@ -21,6 +21,15 @@ export class AuthServiceService {
   }
   
   /**
+   * Register new user.
+   * @param formData Register Model. { 'email':'your-email@email.com','username':'your-user-name', 'password':'your-password'}
+   * @returns 
+   */
+  register(formData: any){
+    return this.http.post(this.url + "/register", formData).toPromise();
+  }
+
+  /**
    * Logout the current user.
    * 
    * TODO: Identify on how the Server/Backend will invalidate the removed token. It will removed on the web browser's storage but the token is still valid.

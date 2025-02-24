@@ -5,9 +5,11 @@ import { ListOfProductsComponent } from './components/products/list-of-products/
 import { ProductFormComponent } from './components/products/product-form/product-form.component';
 import { ErrorComponent } from './components/shared/error/error/error.component';
 import { AuthGard } from './route-guard/auth-gard';
+import { RegisterComponent } from './components/authenticate/register/register.component';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
+  {path:'register',component:RegisterComponent},
   {path:'product-all',component:ListOfProductsComponent,canActivate:[AuthGard]},
   {path:'product-form-add',component:ProductFormComponent,canActivate:[AuthGard]},
   {path:'product-form-update/:id',component:ProductFormComponent,canActivate:[AuthGard]},

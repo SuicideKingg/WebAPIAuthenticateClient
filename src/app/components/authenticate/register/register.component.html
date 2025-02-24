@@ -1,0 +1,65 @@
+<div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+    <form [formGroup]="registerForm" (submit)="onSubmit()">
+        <h1>Sign in</h1>
+        <hr>
+        <br>
+        <div>
+            <label>Email:</label>
+        </div>
+        <div>
+            <input name="email" [ngClass]="isControlInvalid('email') ? 'errorField' : ''" formControlName="email" type="text" required>
+            <div *ngIf="isControlInvalid('email')" style="color: red; font-size: 12px;">
+                <span *ngIf="getFormControl('email').hasError('required')">
+                    Email is required!
+                </span>
+                <span *ngIf="getFormControl('email').hasError('email')">
+                    Invalid email format!
+                </span>
+            </div>
+        </div>
+        <div>
+            <label>Username:</label>
+        </div>
+        <div>
+            <input name="username" [ngClass]="isControlInvalid('username') ? 'errorField' : ''" formControlName="username" type="text" required>
+            <div *ngIf="isControlInvalid('username')" style="color: red; font-size: 12px;">
+                <span *ngIf="getFormControl('username').hasError('required')">
+                    Username is required!
+                </span>
+            </div>
+        </div>
+        <div>
+            <label>Password:</label>
+        </div>
+        <div>
+            <input name="password" [ngClass]="isControlInvalid('password') ? 'errorField' : ''" formControlName="password" type="password" required>
+            <div *ngIf="isControlInvalid('password')" style="color: red; font-size: 12px;">
+                <span *ngIf="getFormControl('password').hasError('required')">
+                    Password is required!
+                </span>
+                <span *ngIf="getFormControl('password').hasError('invalidPassword')">
+                    Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase letter and 1 number.
+                </span>
+            </div>
+        </div>
+        <div>
+            <label>Confirm Password:</label>
+        </div>
+        <div>
+            <input name="confirmPassword" [ngClass]="isControlInvalid('confirmPassword') ? 'errorField' : ''" formControlName="confirmPassword" type="password" required>
+            <div *ngIf="isControlInvalid('confirmPassword')" style="color: red; font-size: 12px;">
+                <span *ngIf="getFormControl('confirmPassword').hasError('required')">
+                    Confirm Password is required!
+                </span>
+                <span *ngIf="getFormControl('confirmPassword').hasError('passwordMismatch')">
+                    Password doesn't match!
+                </span>
+            </div>
+        </div>
+        <button type="submit">Sign In</button>
+        <a style="color: rgb(8, 60, 181); font-size: 12px;" routerLink="/">Go back to login page.</a>
+    </form>
+</div>
+<div *ngIf="loading">
+    <app-loading-hover [loadingText]="'Registration in progress. Please wait...'"></app-loading-hover>
+</div>
